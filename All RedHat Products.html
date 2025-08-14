@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Hat Products: From Communities to Enterprise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            max-width: 100vw;
+            margin: 0 auto;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ee0000, #cc0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #ee0000;
+        }
+        
+        h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e0e0e0;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+            border: 2px solid #ee0000;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ee0000, #cc0000);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(238, 0, 0, 0.3);
+        }
+        
+        .product-card h4 {
+            font-size: 1.5rem;
+            color: #ee0000;
+            margin-bottom: 1rem;
+        }
+        
+        .redhat-logo {
+            display: inline-block;
+            background: #ee0000;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .flow-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .flow-item {
+            background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+            border: 2px solid #ee0000;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem;
+            flex: 1;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .flow-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(238, 0, 0, 0.4);
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: #ee0000;
+            margin: 0 1rem;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(238, 0, 0, 0.1), rgba(238, 0, 0, 0.2));
+            border-radius: 15px;
+            border: 1px solid rgba(238, 0, 0, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ee0000;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-top: 0.5rem;
+        }
+        
+        .community-enterprise-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(45, 45, 45, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(238, 0, 0, 0.3);
+        }
+        
+        .community-side, .enterprise-side {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .flow-center {
+            flex: 0.3;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .community-projects {
+            background: linear-gradient(135deg, #1a4d3a, #2d5a3d);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .enterprise-products {
+            background: linear-gradient(135deg, #4d1a1a, #5a2d2d);
+            border: 2px solid #ee0000;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-list {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .feature-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ee0000;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+            border: 1px solid #ee0000;
+            border-radius: 25px;
+            padding: 0.8rem 1.5rem;
+            color: #ffffff;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background: linear-gradient(135deg, #ee0000, #cc0000);
+            transform: scale(1.05);
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: #ee0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #cc0000;
+            transform: scale(1.1);
+        }
+        
+        .slide-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(45, 45, 45, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.8rem; }
+            .slide { padding: 1rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            .flow-diagram { flex-direction: column; }
+            .arrow { transform: rotate(90deg); }
+            .community-enterprise-flow { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide" id="slide1">
+            <div class="slide-content">
+                <h1>Red Hat Products</h1>
+                <h2>From Communities to Enterprise</h2>
+                <p style="font-size: 1.5rem; margin-top: 3rem;">Building the foundation for digital transformation with open source innovation</p>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">1M+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Years of Innovation</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">Fortune 500 Companies</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Open Source Philosophy -->
+        <div class="slide" id="slide2">
+            <div class="slide-content">
+                <h2>The Open Source Advantage</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>Community Innovation</h4>
+                        <p>Harness the collective intelligence of global developer communities to drive rapid innovation and problem-solving.</p>
+                    </div>
+                    <div class="product-card">
+                        <h4>Enterprise Stability</h4>
+                        <p>Production-ready solutions with enterprise-grade support, security, and lifecycle management.</p>
+                    </div>
+                    <div class="product-card">
+                        <h4>Vendor Freedom</h4>
+                        <p>Avoid vendor lock-in with open standards and portable solutions that work across any infrastructure.</p>
+                    </div>
+                </div>
+                <p style="margin-top: 3rem; font-size: 1.3rem;">Red Hat bridges the gap between cutting-edge community innovation and enterprise requirements, delivering the best of both worlds.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Community to Enterprise Flow -->
+        <div class="slide" id="slide3">
+            <div class="slide-content">
+                <h2>The Innovation Pipeline</h2>
+                <div class="community-enterprise-flow">
+                    <div class="community-side">
+                        <div class="community-projects">
+                            <h3 style="color: #4caf50;">Community Projects</h3>
+                            <div class="tech-stack">
+                                <div class="tech-item">Fedora</div>
+                                <div class="tech-item">CentOS Stream</div>
+                                <div class="tech-item">Apache</div>
+                                <div class="tech-item">Kubernetes</div>
+                                <div class="tech-item">Ansible</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-center">
+                        <div style="font-size: 3rem; color: #ee0000;">→</div>
+                        <p style="color: #ee0000; font-weight: bold; margin-top: 1rem;">Innovation Flow</p>
+                    </div>
+                    
+                    <div class="enterprise-side">
+                        <div class="enterprise-products">
+                            <h3>Enterprise Products</h3>
+                            <div class="tech-stack">
+                                <div class="tech-item">RHEL</div>
+                                <div class="tech-item">OpenShift</div>
+                                <div class="tech-item">Middleware</div>
+                                <div class="tech-item">Satellite</div>
+                                <div class="tech-item">Automation Platform</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Red Hat Enterprise Linux -->
+        <div class="slide" id="slide4">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat Enterprise Linux</div>
+                <h2>The Foundation of Enterprise Computing</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🔒 Security First</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>SELinux mandatory access controls</li>
+                                <li>Real-time security updates</li>
+                                <li>Vulnerability scanning & remediation</li>
+                                <li>Compliance frameworks support</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>⚡ Performance Optimized</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Tuned performance profiles</li>
+                                <li>Real-time kernel capabilities</li>
+                                <li>Advanced memory management</li>
+                                <li>High-performance networking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏢 Enterprise Ready</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>10-year lifecycle support</li>
+                                <li>Predictable release cadence</li>
+                                <li>24/7 global support</li>
+                                <li>Migration & upgrade tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 1.3rem;">Trusted by millions of deployments worldwide, RHEL provides the stable, secure, and performant foundation for critical enterprise workloads.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: OpenShift Platform -->
+        <div class="slide" id="slide5">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat OpenShift Platform</div>
+                <h2>Kubernetes for the Enterprise</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>Developer Experience</h4>
+                        <p>GitOps workflows, integrated CI/CD, and developer-friendly tools</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>Operations Excellence</h4>
+                        <p>Automated updates, cluster management, and enterprise security</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>Multi-Cloud Freedom</h4>
+                        <p>Consistent platform across AWS, Azure, Google Cloud, and on-premises</p>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>OpenShift Container Platform</h4>
+                        <p>Full-stack container platform with integrated developer tools, security, and operations capabilities.</p>
+                    </div>
+                    <div class="product-card">
+                        <h4>OpenShift Dedicated</h4>
+                        <p>Fully managed OpenShift service on AWS and Google Cloud with SLA-backed uptime.</p>
+                    </div>
+                    <div class="product-card">
+                        <h4>Azure Red Hat OpenShift</h4>
+                        <p>Jointly engineered and supported OpenShift service running natively on Microsoft Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: OpenShift AI -->
+        <div class="slide" id="slide6">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat OpenShift AI</div>
+                <h2>MLOps at Enterprise Scale</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🤖 Complete ML Lifecycle</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Data preparation and feature engineering</li>
+                                <li>Model training and experimentation</li>
+                                <li>Model deployment and serving</li>
+                                <li>Monitoring and governance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🔧 Developer Tools</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Jupyter notebooks and IDEs</li>
+                                <li>Popular ML frameworks support</li>
+                                <li>GPU acceleration</li>
+                                <li>Collaborative workspaces</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏭 Production Ready</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Scalable model serving</li>
+                                <li>A/B testing capabilities</li>
+                                <li>Model versioning and lineage</li>
+                                <li>Enterprise security and compliance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 1.3rem;">Accelerate AI adoption with a comprehensive platform that brings data scientists, developers, and operations teams together.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: OpenShift Virtualization -->
+        <div class="slide" id="slide7">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat OpenShift Virtualization</div>
+                <h2>Modernize Virtual Infrastructure</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>Legacy VMs</h4>
+                        <p>Run existing virtual machines alongside containers without migration</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>Unified Platform</h4>
+                        <p>Single platform for VMs, containers, and serverless workloads</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>Cloud-Native Operations</h4>
+                        <p>Kubernetes-native management for all workload types</p>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🔄 Seamless Migration</h4>
+                        <p>Import VMs from VMware vSphere, Red Hat Virtualization, and other platforms with minimal disruption to running applications.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>📱 Unified Management</h4>
+                        <p>Manage VMs and containers through the same OpenShift console, APIs, and CLI tools for operational efficiency.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🚀 Modernization Path</h4>
+                        <p>Gradual application modernization from VMs to containers while maintaining business continuity and reducing risk.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Middleware Solutions -->
+        <div class="slide" id="slide8">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat Middleware</div>
+                <h2>Application Integration & Development</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>JBoss Enterprise Application Platform</h4>
+                        <p>High-performance Java EE application server with enterprise support and cloud-native capabilities.</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">Java EE</div>
+                            <div class="tech-item">MicroProfile</div>
+                            <div class="tech-item">Jakarta EE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Red Hat Fuse</h4>
+                        <p>Distributed integration platform with Apache Camel for connecting applications and data across hybrid environments.</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">Apache Camel</div>
+                            <div class="tech-item">API Management</div>
+                            <div class="tech-item">ESB</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Red Hat AMQ</h4>
+                        <p>Flexible messaging platform based on Apache ActiveMQ and Apache Kafka for real-time data streaming.</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">ActiveMQ</div>
+                            <div class="tech-item">Kafka</div>
+                            <div class="tech-item">MQTT</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Red Hat Data Grid</h4>
+                        <p>In-memory data grid platform providing fast access to data with distributed computing capabilities.</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">Infinispan</div>
+                            <div class="tech-item">Caching</div>
+                            <div class="tech-item">Data Processing</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Red Hat Process Automation</h4>
+                        <p>Business process management and decision management platform for automating business operations.</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">BPMN</div>
+                            <div class="tech-item">DMN</div>
+                            <div class="tech-item">Rules Engine</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Red Hat 3scale API Management</h4>
+                        <p>Complete API management solution for designing, deploying, and managing APIs at scale.</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">API Gateway</div>
+                            <div class="tech-item">Developer Portal</div>
+                            <div class="tech-item">Analytics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Red Hat Satellite -->
+        <div class="slide" id="slide9">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat Satellite</div>
+                <h2>Systems Management at Scale</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Systems Managed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime SLA</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Faster Deployment</span>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🔧 Configuration Management</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Automated provisioning and deployment</li>
+                                <li>Configuration drift detection</li>
+                                <li>Compliance reporting and remediation</li>
+                                <li>Patch management automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>📊 Monitoring & Reporting</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Real-time system monitoring</li>
+                                <li>Performance analytics</li>
+                                <li>Custom dashboards and alerts</li>
+                                <li>Audit trails and compliance reports</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🌐 Hybrid Cloud Management</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>On-premises and cloud system management</li>
+                                <li>Centralized content and subscription management</li>
+                                <li>Disaster recovery and backup integration</li>
+                                <li>Multi-location deployment support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Ansible Automation Platform -->
+        <div class="slide" id="slide10">
+            <div class="slide-content">
+                <div class="redhat-logo">Red Hat Ansible Automation Platform</div>
+                <h2>Automation Without Limits</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>IT Operations</h4>
+                        <p>Server configuration, application deployment, and infrastructure management</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>Security</h4>
+                        <p>Automated security policies, incident response, and compliance workflows</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>Network</h4>
+                        <p>Network device configuration, policy enforcement, and change management</p>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>Ansible Engine</h4>
+                        <p>Agentless automation engine that uses simple, human-readable YAML playbooks to define automation tasks.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Automation Hub</h4>
+                        <p>Centralized repository for certified automation content including roles, modules, and collections.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Automation Controller</h4>
+                        <p>Web-based interface for managing automation workflows, scheduling jobs, and controlling access.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Automation Analytics</h4>
+                        <p>Insights and analytics to optimize automation performance and measure business impact.</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 1.3rem;">From simple configuration management to complex multi-tier application deployments, Ansible automates the entire IT lifecycle.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Integration & Ecosystem -->
+        <div class="slide" id="slide11">
+            <div class="slide-content">
+                <h2>Integrated Ecosystem</h2>
+                
+                <div class="community-enterprise-flow">
+                    <div style="flex: 1;">
+                        <h3>Infrastructure Layer</h3>
+                        <div class="tech-stack">
+                            <div class="tech-item">RHEL</div>
+                            <div class="tech-item">CoreOS</div>
+                            <div class="tech-item">Satellite</div>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h3>Platform Layer</h3>
+                        <div class="tech-stack">
+                            <div class="tech-item">OpenShift</div>
+                            <div class="tech-item">OpenShift AI</div>
+                            <div class="tech-item">OpenShift Virtualization</div>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h3>Application Layer</h3>
+                        <div class="tech-stack">
+                            <div class="tech-item">Middleware</div>
+                            <div class="tech-item">3scale</div>
+                            <div class="tech-item">Fuse</div>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h3>Automation Layer</h3>
+                        <div class="tech-stack">
+                            <div class="tech-item">Ansible</div>
+                            <div class="tech-item">Satellite</div>
+                            <div class="tech-item">Insights</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 3rem; font-size: 1.4rem; text-align: center;">Every Red Hat solution is designed to work seamlessly together, providing a complete, integrated stack for digital transformation.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Use Cases & Industries -->
+        <div class="slide" id="slide12">
+            <div class="slide-content">
+                <h2>Industry Solutions</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🏦 Financial Services</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>High-frequency trading platforms</li>
+                                <li>Risk management systems</li>
+                                <li>Regulatory compliance automation</li>
+                                <li>Real-time fraud detection</li>
+                                <li>Mobile banking applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏥 Healthcare</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Electronic health records</li>
+                                <li>Medical imaging systems</li>
+                                <li>Clinical decision support</li>
+                                <li>Telemedicine platforms</li>
+                                <li>Healthcare analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏭 Manufacturing</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Industrial IoT platforms</li>
+                                <li>Predictive maintenance</li>
+                                <li>Supply chain optimization</li>
+                                <li>Quality control systems</li>
+                                <li>Smart factory automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>📡 Telecommunications</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>5G network infrastructure</li>
+                                <li>Network function virtualization</li>
+                                <li>Edge computing platforms</li>
+                                <li>Customer experience management</li>
+                                <li>Network automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🛒 Retail & E-commerce</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Omnichannel commerce platforms</li>
+                                <li>Inventory management systems</li>
+                                <li>Customer analytics</li>
+                                <li>Personalization engines</li>
+                                <li>Point-of-sale systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏛️ Government & Public Sector</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Citizen services portals</li>
+                                <li>Emergency response systems</li>
+                                <li>Data analytics platforms</li>
+                                <li>Secure communications</li>
+                                <li>Digital transformation initiatives</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Cloud Strategy -->
+        <div class="slide" id="slide13">
+            <div class="slide-content">
+                <h2>Hybrid Multi-Cloud Strategy</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>🏢 On-Premises</h4>
+                        <p>Private clouds and data centers with full control and customization</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">RHEL</div>
+                            <div class="tech-item">OpenShift</div>
+                            <div class="tech-item">Satellite</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-item">
+                        <h4>☁️ Public Cloud</h4>
+                        <p>AWS, Azure, Google Cloud with native integrations and managed services</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">ROSA</div>
+                            <div class="tech-item">ARO</div>
+                            <div class="tech-item">OpenShift Dedicated</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-item">
+                        <h4>🌊 Edge Computing</h4>
+                        <p>Distributed computing at the network edge for low-latency applications</p>
+                        <div class="tech-stack">
+                            <div class="tech-item">MicroShift</div>
+                            <div class="tech-item">Device Edge</div>
+                            <div class="tech-item">Advanced Cluster Management</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3>Consistent Operations Everywhere</h3>
+                    <p style="font-size: 1.2rem;">Deploy applications once and run them anywhere - from core data centers to public clouds to edge locations - with the same operational model, security policies, and developer experience.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Security & Compliance -->
+        <div class="slide" id="slide14">
+            <div class="slide-content">
+                <h2>Security & Compliance Built-In</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Security Monitoring</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">CVE</span>
+                        <span class="stat-label">Vulnerability Response</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">FIPS</span>
+                        <span class="stat-label">140-2 Certified</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">SOC 2</span>
+                        <span class="stat-label">Type II Compliant</span>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🛡️ Defense in Depth</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Multi-layered security architecture</li>
+                                <li>Zero-trust network principles</li>
+                                <li>Container image scanning</li>
+                                <li>Runtime threat detection</li>
+                                <li>Security policy automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>📋 Compliance Frameworks</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>SOX, PCI-DSS, HIPAA</li>
+                                <li>FISMA, FedRAMP, Common Criteria</li>
+                                <li>GDPR, ISO 27001</li>
+                                <li>Automated compliance reporting</li>
+                                <li>Continuous compliance monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🔐 Identity & Access Management</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Role-based access control (RBAC)</li>
+                                <li>Single sign-on (SSO) integration</li>
+                                <li>Multi-factor authentication</li>
+                                <li>Service account management</li>
+                                <li>Audit logging and forensics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: DevSecOps Integration -->
+        <div class="slide" id="slide15">
+            <div class="slide-content">
+                <h2>DevSecOps: Security at Every Step</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>📝 Plan</h4>
+                        <p>Threat modeling and security requirements</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>💻 Code</h4>
+                        <p>Static analysis and secure coding practices</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>🏗️ Build</h4>
+                        <p>Container scanning and vulnerability assessment</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>🧪 Test</h4>
+                        <p>Dynamic testing and security validation</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>🚀 Deploy</h4>
+                        <p>Policy enforcement and compliance checks</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>📊 Monitor</h4>
+                        <p>Runtime protection and incident response</p>
+                    </div>
+                </div>
+                
+                <div class="product-card" style="margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                    <h3>Shift Security Left</h3>
+                    <p style="font-size: 1.2rem;">Integrate security controls throughout the software development lifecycle, from code commit to production deployment. Catch vulnerabilities early, reduce remediation costs, and accelerate secure delivery.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: AI & Machine Learning -->
+        <div class="slide" id="slide16">
+            <div class="slide-content">
+                <h2>AI/ML Across the Platform</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🧠 OpenShift AI</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>End-to-end ML lifecycle management</li>
+                                <li>GPU acceleration and scaling</li>
+                                <li>Model serving and monitoring</li>
+                                <li>Collaborative data science workspaces</li>
+                                <li>Enterprise-grade security and governance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>📊 Red Hat Insights</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Predictive analytics for system health</li>
+                                <li>Automated recommendation engine</li>
+                                <li>Risk assessment and mitigation</li>
+                                <li>Performance optimization suggestions</li>
+                                <li>Security vulnerability detection</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🤖 Intelligent Automation</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Self-healing infrastructure</li>
+                                <li>Anomaly detection and response</li>
+                                <li>Capacity planning and scaling</li>
+                                <li>Predictive maintenance</li>
+                                <li>Intelligent workload placement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-stack" style="margin-top: 3rem;">
+                    <div class="tech-item">TensorFlow</div>
+                    <div class="tech-item">PyTorch</div>
+                    <div class="tech-item">Jupyter</div>
+                    <div class="tech-item">Kubeflow</div>
+                    <div class="tech-item">MLflow</div>
+                    <div class="tech-item">Apache Spark</div>
+                    <div class="tech-item">CUDA</div>
+                    <div class="tech-item">OpenVINO</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Partner Ecosystem -->
+        <div class="slide" id="slide17">
+            <div class="slide-content">
+                <h2>Partner Ecosystem</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>🏭 Technology Partners</h4>
+                        <p>Intel, AMD, NVIDIA, IBM, Dell, HPE</p>
+                    </div>
+                    <div class="flow-item">
+                        <h4>☁️ Cloud Partners</h4>
+                        <p>AWS, Microsoft, Google, Alibaba</p>
+                    </div>
+                    <div class="flow-item">
+                        <h4>🔧 ISV Partners</h4>
+                        <p>MongoDB, Elastic, Confluent, DataDog</p>
+                    </div>
+                </div>
+                
+                <div class="product-grid" style="margin-top: 3rem;">
+                    <div class="product-card">
+                        <h4>Certified Partner Solutions</h4>
+                        <div class="tech-stack">
+                            <div class="tech-item">MongoDB Atlas</div>
+                            <div class="tech-item">Elastic Cloud</div>
+                            <div class="tech-item">Confluent Cloud</div>
+                            <div class="tech-item">Crunchy Data</div>
+                            <div class="tech-item">Starburst</div>
+                            <div class="tech-item">CockroachDB</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Marketplace Integration</h4>
+                        <div class="tech-stack">
+                            <div class="tech-item">Red Hat Marketplace</div>
+                            <div class="tech-item">AWS Marketplace</div>
+                            <div class="tech-item">Azure Marketplace</div>
+                            <div class="tech-item">Google Cloud Marketplace</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Service Partners</h4>
+                        <div class="tech-stack">
+                            <div class="tech-item">Accenture</div>
+                            <div class="tech-item">Deloitte</div>
+                            <div class="tech-item">IBM Services</div>
+                            <div class="tech-item">Capgemini</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Success Stories -->
+        <div class="slide" id="slide18">
+            <div class="slide-content">
+                <h2>Customer Success Stories</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🏦 Major Bank</h4>
+                        <div class="stats-container" style="margin-bottom: 1rem;">
+                            <div class="stat-item">
+                                <span class="stat-number">300%</span>
+                                <span class="stat-label">Faster Deployment</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">60%</span>
+                                <span class="stat-label">Cost Reduction</span>
+                            </div>
+                        </div>
+                        <p>Modernized core banking platform with OpenShift, reducing deployment time from months to weeks while maintaining regulatory compliance.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏥 Healthcare System</h4>
+                        <div class="stats-container" style="margin-bottom: 1rem;">
+                            <div class="stat-item">
+                                <span class="stat-number">99.99%</span>
+                                <span class="stat-label">Uptime</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50%</span>
+                                <span class="stat-label">Faster Processing</span>
+                            </div>
+                        </div>
+                        <p>Deployed AI-powered diagnostic tools on OpenShift AI, improving patient outcomes and reducing diagnosis time.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🏭 Manufacturing Giant</h4>
+                        <div class="stats-container" style="margin-bottom: 1rem;">
+                            <div class="stat-item">
+                                <span class="stat-number">40%</span>
+                                <span class="stat-label">Efficiency Gain</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Operations</span>
+                            </div>
+                        </div>
+                        <p>Implemented edge computing with OpenShift for predictive maintenance, reducing unplanned downtime by 75%.</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>📡 Telecom Leader</h4>
+                        <div class="stats-container" style="margin-bottom: 1rem;">
+                            <div class="stat-item">
+                                <span class="stat-number">1000+</span>
+                                <span class="stat-label">Edge Sites</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5G</span>
+                                <span class="stat-label">Network Ready</span>
+                            </div>
+                        </div>
+                        <p>Built cloud-native 5G infrastructure on OpenShift, enabling rapid service deployment and edge computing capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Training & Certification -->
+        <div class="slide" id="slide19">
+            <div class="slide-content">
+                <h2>Skills Development & Certification</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-item">
+                        <h4>🎓 Red Hat Academy</h4>
+                        <p>University partnerships and academic programs</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>📚 Training Courses</h4>
+                        <p>Instructor-led and self-paced learning</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">
+                        <h4>🏅 Certifications</h4>
+                        <p>Industry-recognized credentials</p>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>System Administrator (RHCSA)</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Red Hat Enterprise Linux administration</li>
+                                <li>System configuration and management</li>
+                                <li>Security and networking basics</li>
+                                <li>Hands-on performance-based exam</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>Engineer (RHCE)</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Advanced system administration</li>
+                                <li>Network services configuration</li>
+                                <li>Security implementation</li>
+                                <li>Automation with Ansible</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>OpenShift Administrator</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Container orchestration</li>
+                                <li>Cluster management</li>
+                                <li>Application deployment</li>
+                                <li>Monitoring and troubleshooting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>OpenShift Developer</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Cloud-native development</li>
+                                <li>CI/CD pipeline creation</li>
+                                <li>Microservices architecture</li>
+                                <li>Container-based applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Future Roadmap -->
+        <div class="slide" id="slide20">
+            <div class="slide-content">
+                <h2>Innovation Roadmap</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h4>🚀 Emerging Technologies</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Quantum computing integration</li>
+                                <li>Advanced AI/ML capabilities</li>
+                                <li>Serverless computing evolution</li>
+                                <li>Edge-to-cloud continuum</li>
+                                <li>Sustainable computing practices</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🔮 Next-Gen Features</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Autonomous operations</li>
+                                <li>Self-optimizing systems</li>
+                                <li>Advanced threat intelligence</li>
+                                <li>Real-time compliance monitoring</li>
+                                <li>Predictive scaling and healing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🌐 Global Expansion</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Regional data sovereignty</li>
+                                <li>Local compliance frameworks</li>
+                                <li>Edge computing proliferation</li>
+                                <li>Multi-region disaster recovery</li>
+                                <li>Localized support services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-container" style="margin-top: 3rem;">
+                    <div class="stat-item">
+                        <span class="stat-number">$1B+</span>
+                        <span class="stat-label">R&D Investment</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">20K+</span>
+                        <span class="stat-label">Engineers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">300+</span>
+                        <span class="stat-label">Open Source Projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: Conclusion -->
+        <div class="slide" id="slide21">
+            <div class="slide-content">
+                <h1>Transform Your Business</h1>
+                <h2>With Open Source Innovation</h2>
+                
+                <div class="product-grid" style="margin: 3rem 0;">
+                    <div class="product-card">
+                        <h4>🎯 Why Choose Red Hat?</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>25+ years of open source leadership</li>
+                                <li>Enterprise-grade support and services</li>
+                                <li>Proven security and compliance</li>
+                                <li>Global partner ecosystem</li>
+                                <li>Continuous innovation pipeline</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <h4>🚀 Get Started Today</h4>
+                        <div class="feature-list">
+                            <ul>
+                                <li>Free trials and developer programs</li>
+                                <li>Comprehensive training and certification</li>
+                                <li>Expert consulting and support</li>
+                                <li>Migration and modernization services</li>
+                                <li>24/7 global technical support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 4rem;">
+                    <h3 style="color: #ee0000; margin-bottom: 2rem;">Ready to Begin Your Journey?</h3>
+                    <p style="font-size: 1.4rem; color: #ffffff;">From communities to enterprise, Red Hat provides the foundation for your digital transformation success.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">‹</button>
+        <button class="nav-btn" onclick="nextSlide()">›</button>
+    </div>
+
+    <div class="slide-indicator">
+        <span id="slideNumber">1 / 21</span>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 21;
+
+        function showSlide(n) {
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+            
+            const targetSlide = document.getElementById(`slide${currentSlide}`);
+            if (targetSlide) {
+                targetSlide.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('slideNumber').textContent = `${currentSlide} / ${totalSlides}`;
+            }
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Update slide indicator on scroll
+        window.addEventListener('scroll', function() {
+            const slides = document.querySelectorAll('.slide');
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+                
+                if (scrollPosition >= slideTop && scrollPosition <= slideBottom) {
+                    currentSlide = index + 1;
+                    document.getElementById('slideNumber').textContent = `${currentSlide} / ${totalSlides}`;
+                }
+            });
+        });
+
+        // Initialize
+        showSlide(1);
